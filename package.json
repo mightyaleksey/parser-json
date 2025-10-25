@@ -1,0 +1,12 @@
+{
+  "name": "parser-json",
+  "dependencies": {
+    "mitata": "1.0.34",
+    "prettier": "3.6.2"
+  },
+  "scripts": {
+    "format": "prettier . --write",
+    "start": "node --expose-gc perf.mjs",
+    "test": "node --test"
+  }
+}
