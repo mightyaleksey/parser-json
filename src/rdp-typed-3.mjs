@@ -124,6 +124,7 @@ function parseNumber() {
     value *= Math.pow(10, parseNumber())
   }
 
+  assert(isFinite(value))
   return value
 }
 

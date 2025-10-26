@@ -13,9 +13,7 @@ const json900 = await readFile('./sample900.json', 'utf8')
 
 // reference
 bench('douglas crockford rdp 900kb', () => crockfordRDP(json900)).gc('inner')
-bench('douglas crockford rdp 2 [eval] 900kb', () => crockfordRDP2(json900)).gc(
-  'inner'
-)
+bench('douglas crockford rdp 2 [eval] 900kb', () => crockfordRDP2(json900)).gc('inner')
 // custom
 bench('typed rdp 900kb', () => typedRDP(json900)).gc('inner')
 bench('typed rdp 2 900kb', () => typedRDP2(json900)).gc('inner')
