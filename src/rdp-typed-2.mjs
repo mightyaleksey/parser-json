@@ -23,7 +23,6 @@
  * - } - 125
  */
 
-const decoder = new TextDecoder()
 const encoder = new TextEncoder()
 
 let cursor // number
@@ -56,7 +55,7 @@ function parseArray() {
 
   const arr = []
   if (byte === 93) {
-    read(93)
+    read()
     return arr
   }
 
@@ -65,7 +64,7 @@ function parseArray() {
     space()
 
     if (byte === 93) {
-      read(93)
+      read()
       return arr
     }
     read(44)
@@ -78,7 +77,7 @@ function parseObject() {
 
   const obj = {}
   if (byte === 125) {
-    read(125)
+    read()
     return obj
   }
 
@@ -90,7 +89,7 @@ function parseObject() {
     space()
 
     if (byte === 125) {
-      read(125)
+      read()
       return obj
     }
 
@@ -99,23 +98,34 @@ function parseObject() {
   }
 }
 
-function isFloat(byte) {
-  if (byte === 43 || byte === 46 || byte === 69 || byte === 101) return true
-  return isInt(byte)
-}
-
-function isInt(byte) {
-  return byte === 45 || (byte >= 48 && byte <= 57)
-}
-
 function parseNumber() {
-  const start = cursor
-  while (isFloat(byte)) read()
+  // -1.2e-3
+  let mult = 1
+  let value = 0
+  if (byte === 45) {
+    mult = -1
+    read()
+  }
+  while (48 <= byte && byte <= 57) {
+    value = 10 * value + mult * (byte - 48)
+    read()
+  }
+  if (byte === 46) {
+    read()
+    while (48 <= byte && byte <= 57) {
+      mult = mult / 10
+      value = value + mult * (byte - 48)
+      read()
+    }
+  }
+  if (byte === 69 || byte === 101) {
+    read()
+    if (byte === 43) read()
+    value *= Math.pow(10, parseNumber())
+  }
 
-  const n = decoder.decode(bytes.slice(start, cursor))
-  assert(!isNaN(n))
-
-  return Number(n)
+  assert(isFinite(value))
+  return value
 }
 
 const escapee = {
@@ -135,7 +145,7 @@ function parseString() {
   let value = ''
   while (true) {
     if (byte === 34) {
-      read(34)
+      read()
       return value
     }
     if (byte === 92) {
@@ -151,26 +161,27 @@ function parseString() {
 }
 
 function parseWord() {
-  switch (byte) {
-    case 102:
-      read(102)
-      read(97)
-      read(108)
-      read(115)
-      read(101)
-      return false
-    case 110:
-      read(110)
-      read(117)
-      read(108)
-      read(108)
-      return null
-    case 116:
-      read(116)
-      read(114)
-      read(117)
-      read(101)
-      return true
+  if (byte === 102) {
+    read(102)
+    read(97)
+    read(108)
+    read(115)
+    read(101)
+    return false
+  }
+  if (byte === 110) {
+    read(110)
+    read(117)
+    read(108)
+    read(108)
+    return null
+  }
+  if (byte === 116) {
+    read(116)
+    read(114)
+    read(117)
+    read(101)
+    return true
   }
 
   assert(false)
@@ -181,7 +192,8 @@ function parseValue() {
   if (byte === 123) return parseObject()
   if (byte === 91) return parseArray()
   if (byte === 34) return parseString()
-  return isInt(byte) ? parseNumber() : parseWord()
+  if (byte === 45) return parseNumber()
+  return byte >= 48 && byte <= 57 ? parseNumber() : parseWord()
 }
 
 export function parse(input) {
@@ -191,7 +203,7 @@ export function parse(input) {
 
   const json = parseValue()
   space()
-  assert((cursor = bytes.length))
+  assert(cursor = bytes.length)
 
   return json
 }

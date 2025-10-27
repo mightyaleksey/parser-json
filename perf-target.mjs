@@ -1,10 +1,10 @@
 import { readFile } from 'node:fs/promises'
-import { parse } from './src/rdp-typed-3.mjs'
+import { parse } from './src/rdp-typed-2.mjs'
 
 (async function run() {
-  const json900 = await readFile('./sample900.json', 'utf8')
+  const json900 = await readFile('./sample10.json', 'utf8')
 
-  const iterations = 1000
+  const iterations = 100
   const start = Date.now()
 
   for (var i = 0; i < iterations; i++) parse(json900)

@@ -1,22 +1,22 @@
+import { parse as crockfordEval } from './src/crockford-eval.mjs'
 import { parse as crockfordRDP } from './src/crockford-rdp.mjs'
-import { parse as crockfordRDP2 } from './src/crockford-rdp-2.mjs'
+import { parse as rdp } from './src/rdp.mjs'
+import { parse as rdpRegex } from './src/rdp-regex.mjs'
 import { parse as typedClassRDP } from './src/rdp-typed-class.mjs'
-import { parse as typedClassRDP2 } from './src/rdp-typed-class-2.mjs'
-import { parse as typedRDP } from './src/rdp-typed.mjs'
+import { parse as typedRDP } from './src/rdp-typed-1.mjs'
 import { parse as typedRDP2 } from './src/rdp-typed-2.mjs'
-import { parse as typedRDP3 } from './src/rdp-typed-3.mjs'
 
 import assert from 'node:assert'
 import test from 'node:test'
 
 const parsers = [
   ['crockford rdp', crockfordRDP],
-  ['crockford rdp 2 [eval]', crockfordRDP2],
+  ['crockford eval', crockfordEval],
+  ['rdp', rdp],
+  ['rdp regex', rdpRegex],
   ['typed rdp', typedRDP],
   ['typed rdp 2', typedRDP2],
-  ['typed rdp 3', typedRDP3],
   ['typed rdp class', typedClassRDP],
-  ['typed rdp class 2', typedClassRDP2]
 ]
 const variants = [
   'false',
