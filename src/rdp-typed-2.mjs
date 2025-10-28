@@ -147,14 +147,14 @@ function parseNumber() {
 }
 
 const escapee = {
-  34: '"',
-  47: '/',
-  92: '\\',
-  98: '\b',
-  102: '\f',
-  110: '\n', // 10
-  114: '\r', // 13
-  116: '\t'
+  102: 12,
+  110: 10,
+  114: 13,
+  116: 9,
+  34: 34,
+  47: 47,
+  92: 92,
+  98: 8
 }
 
 function parseString() {
@@ -169,10 +169,9 @@ function parseString() {
     if (byte === 92) {
       read()
       assert(escapee[byte] != null)
-      value += escapee[byte]
-    } else {
-      value += String.fromCharCode(byte)
+      byte = escapee[byte]
     }
+    value += String.fromCharCode(byte)
 
     read()
   }
@@ -221,7 +220,7 @@ export function parse(input) {
 
   const json = parseValue()
   space()
-  assert(cursor = bytes.length)
+  assert((cursor = bytes.length))
 
   return json
 }

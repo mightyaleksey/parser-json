@@ -16,7 +16,7 @@ const parsers = [
   ['rdp regex', rdpRegex],
   ['typed rdp', typedRDP],
   ['typed rdp 2', typedRDP2],
-  ['typed rdp class', typedClassRDP],
+  ['typed rdp class', typedClassRDP]
 ]
 const variants = [
   'false',

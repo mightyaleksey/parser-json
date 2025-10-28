@@ -192,7 +192,7 @@ export function parse(input) {
 
   const json = parseValue()
   space()
-  assert(cursor = bytes.length)
+  assert((cursor = bytes.length))
 
   return json
 }

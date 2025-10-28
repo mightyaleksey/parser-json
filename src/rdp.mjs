@@ -19,12 +19,7 @@ function space() {
    * - \n    - 10
    * - \r    - 13
    */
-  while (
-    char === ' ' ||
-    char === '\t' ||
-    char === '\n' ||
-    char === '\r'
-  ) read()
+  while (char === ' ' || char === '\t' || char === '\n' || char === '\r') read()
 }
 
 function parseArray() {
@@ -99,11 +94,11 @@ const escapee = {
   '"': '"',
   '/': '/',
   '\\': '\\',
-  'b': '\b',
-  'f': '\f',
-  'n': '\n', // 10
-  'r': '\r', // 13
-  't': '\t'
+  b: '\b',
+  f: '\f',
+  n: '\n', // 10
+  r: '\r', // 13
+  t: '\t'
 }
 
 function parseString() {
@@ -169,7 +164,7 @@ export function parse(value) {
 
   const json = parseValue()
   space()
-  assert(cursor = input.length)
+  assert((cursor = input.length))
 
   return json
 }

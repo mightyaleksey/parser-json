@@ -75,7 +75,8 @@ class JSONParser {
       this.byte === 9 ||
       this.byte === 10 ||
       this.byte === 13
-    ) this.read()
+    )
+      this.read()
   }
 
   parseArray() {
@@ -200,7 +201,7 @@ class JSONParser {
 
     const json = this.parseValue()
     this.space()
-    this.assert(this.cursor = this.bytes.length)
+    this.assert((this.cursor = this.bytes.length))
 
     return json
   }

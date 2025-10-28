@@ -86,11 +86,11 @@ const escapee = {
   '"': '"',
   '/': '/',
   '\\': '\\',
-  'b': '\b',
-  'f': '\f',
-  'n': '\n', // 10
-  'r': '\r', // 13
-  't': '\t'
+  b: '\b',
+  f: '\f',
+  n: '\n', // 10
+  r: '\r', // 13
+  t: '\t'
 }
 
 function parseString() {
@@ -156,7 +156,7 @@ export function parse(value) {
 
   const json = parseValue()
   space()
-  assert(cursor = input.length)
+  assert((cursor = input.length))
 
   return json
 }
