@@ -23,37 +23,37 @@ runtime: node 22.9.0 (arm64-darwin)
 
 benchmark                   avg (min … max) p75 / p99    (min … top 1%)
 ------------------------------------------- -------------------------------
-douglas crockford rdp 900kb    8.66 ms/iter   8.72 ms     ▅         █▂▃
-                        (8.51 ms … 8.85 ms)   8.79 ms ▃▂▃███▆▅▆▄▅▂▆▂███▃▅▄▄
-                  gc(  1.74 ms …   3.30 ms)   8.54 mb (  8.54 mb…  8.57 mb)
+douglas crockford rdp 900kb    9.23 ms/iter   9.22 ms      █
+                        (8.98 ms … 9.93 ms)   9.89 ms ▂▄█▄██▃▁▁▁▁▁▁▁▁▂▁▂▂▁▂
+                  gc(  1.82 ms …   3.49 ms)   8.54 mb (  8.54 mb…  8.64 mb)
 
-douglas crockford eval 900kb   7.64 ms/iter   7.48 ms █▆
-                       (7.19 ms … 13.11 ms)  13.06 ms ██▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂
-                  gc(  1.21 ms …   3.13 ms)   8.39 mb (  8.33 mb…  9.38 mb)
+douglas crockford eval 900kb   7.61 ms/iter   7.48 ms ██
+                       (7.23 ms … 13.12 ms)  12.83 ms ██▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▂
+                  gc(  1.23 ms …   3.52 ms)   8.38 mb (  8.33 mb…  9.38 mb)
 
-native 900kb                   2.16 ms/iter   2.27 ms   ▅               ▄█
-                        (1.92 ms … 2.30 ms)   2.28 ms ▁▂█▇▂▁▁▁▁▁▁▁▁▁▁▁▁▆██▆
-                  gc(  2.03 ms …   4.06 ms)   1.12 mb (  1.12 mb…  1.12 mb)
+native 900kb                   2.17 ms/iter   2.25 ms             █▂
+                        (1.93 ms … 2.77 ms)   2.45 ms ▄▇▇▃▁▁▂▁▁▂▃▇██▃▂▁▂▁▁▁
+                  gc(  1.98 ms …   3.80 ms)   1.12 mb (  1.12 mb…  1.12 mb)
 
-rdp 900kb                      9.51 ms/iter   9.57 ms                  █▇
-                        (9.18 ms … 9.62 ms)   9.62 ms ▂▁▄▂▁▂▁▁▁▂▂▂▂▂▃▄▆██▄▂
-                  gc(  2.97 ms …   4.61 ms)   7.12 mb (  7.12 mb…  7.22 mb)
+rdp 900kb                      9.67 ms/iter   9.68 ms        █
+                       (9.30 ms … 10.28 ms)  10.28 ms ▂▁▁▃▃▄███▂▂▁▁▂▁▁▂▂▁▂▂
+                  gc(  2.82 ms …   4.59 ms)   7.12 mb (  7.12 mb…  7.22 mb)
 
-rdp regex 900kb               17.65 ms/iter  17.70 ms               █▅
-                      (17.30 ms … 17.86 ms)  17.84 ms ▂▃▂▂▂▁▂▁▁▂▂▄▆███▂▃▃▃▂
-                  gc(  3.03 ms …   4.49 ms)  15.53 mb ( 15.47 mb… 15.58 mb)
+rdp regex 900kb               17.77 ms/iter  17.82 ms       █▆
+                      (17.48 ms … 18.49 ms)  18.40 ms ▂▅▂▄▄▄██▅▅▂▁▁▁▁▁▁▁▁▁▂
+                  gc(  2.95 ms …   4.93 ms)  15.53 mb ( 15.46 mb… 15.58 mb)
 
-typed rdp 900kb                7.90 ms/iter   7.92 ms            ▄▃█
-                        (7.74 ms … 8.02 ms)   8.01 ms ▄▁▁▂▂▂▂▂▂█▇████▅▄▃▂▂▃
-                  gc(  2.95 ms …   4.76 ms)   9.34 mb (  9.34 mb…  9.92 mb)
+typed rdp 900kb                7.93 ms/iter   7.93 ms     █▂
+                        (7.70 ms … 8.63 ms)   8.60 ms ▁▂▅▅██▄▂▁▂▂▂▁▁▁▁▁▁▁▁▁
+                  gc(  2.85 ms …   5.75 ms)   9.34 mb (  9.34 mb…  9.41 mb)
 
-typed rdp 2 900kb              6.51 ms/iter   6.54 ms               █▃▆
-                        (6.31 ms … 6.62 ms)   6.60 ms ▂▁▂▂▃▃▂▂▂▆▂▆▃▆███▆▇▂▃
-                  gc(  2.90 ms …   4.53 ms)   6.73 mb (  6.54 mb…  7.13 mb)
+typed rdp 2 900kb              6.51 ms/iter   6.54 ms              ██▇  ▃
+                        (6.35 ms … 6.88 ms)   6.60 ms ▂▃▃▃▃▁▅▃▁▄▇▇▇████▆█▄▂
+                  gc(  2.80 ms …   4.71 ms)   6.73 mb (  6.73 mb…  6.84 mb)
 
-typed rdp class 900kb         10.12 ms/iter  10.21 ms      ▂ ▂▆ █▄ ▄▂
-                       (9.87 ms … 10.39 ms)  10.39 ms █▅▇▃██▅████████▇▃▅▅▃▅
-                  gc(  3.10 ms …   4.74 ms)   9.46 mb (  9.43 mb…  9.48 mb)
+typed rdp class 900kb         10.41 ms/iter  10.48 ms    ▂ █▆ ▂
+                       (9.80 ms … 11.53 ms)  11.50 ms ▂▃▇█▅██▇█▃▂▁▁▃▂▂▂▂▅▂▂
+                  gc(  2.96 ms …   4.92 ms)   9.48 mb (  9.28 mb… 10.04 mb)
 ```
 
 

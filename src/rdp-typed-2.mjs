@@ -100,28 +100,46 @@ function parseObject() {
 
 function parseNumber() {
   // -1.2e-3
-  let mult = 1
+  let sign = 1
+  let tmp = 1
   let value = 0
+  // check sign
   if (byte === 45) {
-    mult = -1
-    read()
+    sign = -sign
+    read() // skip '-'
   }
+  // get int part
   while (48 <= byte && byte <= 57) {
-    value = 10 * value + mult * (byte - 48)
+    value = 10 * value + byte - 48
     read()
   }
+
+  // get fractional part
   if (byte === 46) {
-    read()
+    read() // skip '.'
     while (48 <= byte && byte <= 57) {
-      mult = mult / 10
-      value = value + mult * (byte - 48)
+      tmp /= 10
+      value += tmp * (byte - 48)
       read()
     }
   }
+
+  value *= sign // apply sign
+
+  // check mantissa
   if (byte === 69 || byte === 101) {
-    read()
-    if (byte === 43) read()
-    value *= Math.pow(10, parseNumber())
+    read() // skip 'e' or 'E'
+
+    sign = byte === 45 ? -1 : 1
+    tmp = 0
+
+    if (byte === 43 || byte === 45) read()
+    while (48 <= byte && byte <= 57) {
+      tmp = 10 * tmp + byte - 48
+      read()
+    }
+
+    value *= Math.pow(10, sign * tmp)
   }
 
   assert(isFinite(value))
