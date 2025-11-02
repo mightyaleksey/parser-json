@@ -5,9 +5,10 @@ import { parse as crockfordEval } from './src/crockford-eval.mjs'
 import { parse as crockfordRDP } from './src/crockford-rdp.mjs'
 import { parse as rdp } from './src/rdp.mjs'
 import { parse as rdpRegex } from './src/rdp-regex.mjs'
-import { parse as typedClassRDP } from './src/rdp-typed-class.mjs'
-import { parse as typedRDP } from './src/rdp-typed-1.mjs'
-import { parse as typedRDP2 } from './src/rdp-typed-2.mjs'
+import { parse as typedClassRDP } from './src/typed-rdp-class.mjs'
+import { parse as typedRDP } from './src/typed-rdp-1.mjs'
+import { parse as typedRDP2 } from './src/typed-rdp-2.mjs'
+import { parse as typedTokenizerBased } from './src/typed-tokenizer-based.mjs'
 
 const json = await readFile('./sample08.json', 'utf8')
 
@@ -21,5 +22,8 @@ bench('rdp regex 800kb', () => rdpRegex(json)).gc('inner')
 bench('typed rdp 800kb', () => typedRDP(json)).gc('inner')
 bench('typed rdp 2 800kb', () => typedRDP2(json)).gc('inner')
 bench('typed rdp class 800kb', () => typedClassRDP(json)).gc('inner')
+bench('typed tokenizer based 800kb', () => typedTokenizerBased(json)).gc(
+  'inner'
+)
 
 await run()
